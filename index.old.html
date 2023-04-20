@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #00152c;
+        user-select: none;
+      }
+      #page-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      .page-position {
+        position: absolute;
+        overflow: hidden;
+      }
+      .page-container {
+        width: 1920px;
+        height: 1080px;
+        transform-origin: left top;
+      }
+    </style>
+    <link rel="stylesheet" href="./assets/frame.css" />
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div class="page-position">
+        <div class="page-container">
+          <div class="frame-header"></div>
+          <div class="frame-container">
+            <div class="charts-panel left-above vertical">
+              <div class="panel-title"></div>
+              <div class="panel-charts secure-1">
+                <div class="charts-title">高危作业项目监管</div>
+                <div class="charts-content"></div>
+              </div>
+              <div class="panel-charts secure-2">
+                <div class="charts-title">高危作业项目监管</div>
+                <div class="charts-content"></div>
+              </div>
+            </div>
+            <div class="charts-panel left-below">
+              <div class="panel-title"></div>
+              <div class="charts-content"></div>
+            </div>
+            <div class="charts-panel center-above"></div>
+            <div class="charts-panel center-below">
+              <div class="panel-title title"></div>
+              <div class="panel-charts rank">
+                <div class="charts-title">综合排名</div>
+                <div class="charts-content"></div>
+              </div>
+              <div class="panel-charts analysis">
+                <div class="charts-title">检修资源分析</div>
+                <div class="charts-content"></div>
+              </div>
+            </div>
+            <div class="charts-panel right-above">
+              <div class="panel-title"></div>
+              <div class="panel-charts check-1">
+                <div class="charts-title">检修计划</div>
+                <div class="charts-content"></div>
+              </div>
+              <div class="panel-charts">
+                <div class="charts-title check-2">检修工单</div>
+                <div class="charts-content"></div>
+              </div>
+            </div>
+            <div class="charts-panel right-below">
+              <div class="panel-title"></div>
+              <div class="charts-content"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./lib/scale.js"></script>
+    <script src="./lib/echarts.js"></script>
+    <script src="./lib/echarts-liquidfill.js"></script>
+    <script src="./charts/important-pie.js"></script>
+    <script src="./charts/check-pie.js"></script>
+    <script>
+      useFitScreen({
+        // width: 1366,
+        // height: 768,
+        el: document.querySelector(".page-position"),
+        container: document.querySelector(".page-container"),
+      });
+
+      const check1 = echarts.init(
+        document.querySelector(".right-above .check-1 .charts-content")
+      );
+      check1.setOption(optionCheckPie);
+
+      const important = echarts.init(
+        document.querySelector(".left-below .charts-content")
+      );
+      important.setOption(optionImportantPie());
+    </script>
+  </body>
+</html>

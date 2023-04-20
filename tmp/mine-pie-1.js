@@ -1,7 +1,7 @@
 var colorList = ["#099D58", "#00C9FF", "#F87F01", "#FFFA12", "#ff5c7a"];
 
 const option = {
-  backgroundColor: "#031a40",
+  backgroundColor: "#051f44",
   series: [
     {
       // 波浪求
@@ -40,7 +40,7 @@ const option = {
       ],
       label: {
         formatter: "60%",
-        fontSize: 100,
+        fontSize: 20,
         color: "#fff",
       },
       outline: {

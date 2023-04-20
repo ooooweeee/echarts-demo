@@ -1,50 +1,72 @@
-const option = {
-  backgroundColor: "#031a40",
-  series: [
-    {
-      type: "liquidFill",
-      radius: "70%",
-      data: [
-        0.6,
-        {
-          value: 0.6,
-          direction: "left", //波浪方向
-        },
-      ], // data个数代表波浪数
-      backgroundStyle: {
-        color: "#429BF7", // 球体本景色
-      },
-      amplitude: "6%", //波浪的振幅
-      color: [
-        {
-          type: "linear",
-          x: 0,
-          y: 0,
-          x2: 0,
-          y2: 1,
-          colorStops: [
-            {
-              offset: 1,
-              color: "#6CDEFC",
-            },
-            {
-              offset: 0,
-              color: "#429BF7",
-            },
-          ],
-          globalCoord: false,
-        },
-      ],
-      label: {
-        formatter: "60%",
-        textStyle: {
-          fontSize: 100,
-          color: "#fff",
-        },
-      },
-      outline: {
-        show: false,
+function pieOption2() {
+  const option = {
+    backgroundColor: "#051f44",
+    title: {
+      text: "总数",
+      x: "30%",
+      y: "46%",
+      textStyle: {
+        color: "#ffffff",
+        fontSize: "18",
       },
     },
-  ],
-};
+    legend: {
+      orient: "vertical",
+      right: "10%",
+      top: "center",
+      textStyle: {
+        color: "#ffffff",
+        fontSize: 14,
+      },
+    },
+    series: [
+      {
+        // 数据
+        type: "pie",
+        zlevel: 1,
+        radius: ["38%", "70%"],
+        center: ["35%", "center"],
+        itemStyle: {
+          borderColor: "#051f44",
+          borderWidth: 8,
+        },
+        label: {
+          show: true,
+          fontSize: 20,
+          icon: "rect",
+        },
+        data: [
+          {
+            name: "在途",
+            value: 147,
+            label: {
+              formatter(params) {
+                return params.data.value;
+              },
+            },
+          },
+          {
+            name: "在用",
+            value: 89,
+            label: {
+              formatter(params) {
+                return params.data.value;
+              },
+            },
+          },
+          {
+            name: "闲置",
+            value: 90,
+            label: {
+              formatter(params) {
+                return params.data.value;
+              },
+            },
+          },
+        ],
+      },
+    ],
+  };
+
+  return option;
+}

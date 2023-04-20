@@ -8,24 +8,110 @@
     <style>
       body {
         margin: 0;
-      }
-      #charts-el {
         width: 100vw;
         height: 100vh;
+        background-color: #00152c;
+        user-select: none;
+      }
+      #page-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      .page-position {
+        position: absolute;
+        overflow: hidden;
+      }
+      .page-container {
+        width: 1920px;
+        height: 1080px;
+        transform-origin: left top;
       }
     </style>
+    <link rel="stylesheet" href="./assets/home.css" />
   </head>
   <body>
-    <div id="charts-el"></div>
+    <div id="page-wrapper">
+      <div class="page-position">
+        <div class="page-container">
+          <div class="frame-header"></div>
+          <div class="frame-container">
+            <div class="frame-panel left">
+              <div class="panel-title"></div>
+              <i class="charts-title">点检计划与完成率</i>
+              <div id="bar-1" class="charts-content"></div>
+
+              <div class="panel-title"></div>
+              <i class="charts-title">高危作业项目监管</i>
+              <div id="pie-1" class="charts-content"></div>
+
+              <i class="charts-title">高危作业项目监管</i>
+              <div id="bar-2" class="charts-content"></div>
+            </div>
+            <div class="frame-panel center-above"></div>
+            <div class="frame-panel center-below">
+              <div class="panel-title title"></div>
+              <i class="charts-title rank-title">综合排名</i>
+              <div id="bar-3" class="charts-content rank-content"></div>
+
+              <i class="charts-title analysis-title">检修资源分析</i>
+              <div id="bar-4" class="charts-content analysis-content"></div>
+            </div>
+            <div class="frame-panel right-above">
+              <div class="panel-title"></div>
+              <i class="charts-title">检修计划</i>
+              <div id="pie-2" class="charts-content"></div>
+
+              <i class="charts-title check-2">检修工单</i>
+              <div id="bar-5" class="charts-content"></div>
+            </div>
+            <div class="frame-panel right-below">
+              <div class="panel-title"></div>
+              <div id="pie-3" class="charts-content"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./lib/scale.js"></script>
     <script src="./lib/echarts.js"></script>
     <script src="./lib/echarts-liquidfill.js"></script>
-    <!-- <script src="./charts/pie-1.js"></script> -->
-    <!-- <script src="./charts/pie-2.js"></script> -->
-    <script src="./charts/mine-pie-1.js"></script>
-    <!-- <script src="./charts/pie-3.js"></script> -->
+    <script src="./charts/pie-1.js"></script>
+    <script src="./charts/pie-2.js"></script>
+    <script src="./charts/pie-3.js"></script>
+    <script src="./charts/bar-1.js"></script>
+    <script src="./charts/bar-2.js"></script>
+    <script src="./charts/bar-3.js"></script>
     <script>
-      const charts = echarts.init(document.querySelector("#charts-el"));
-      charts.setOption(option);
+      const defaultOption = {
+        backgroundColor: "#051f44",
+      };
+
+      useFitScreen({
+        el: document.querySelector(".page-position"),
+        container: document.querySelector(".page-container"),
+      });
+
+      const pie1 = echarts.init(document.querySelector("#pie-1"));
+      pie1.setOption(pieOption1());
+
+      const pie2 = echarts.init(document.querySelector("#pie-2"));
+      pie2.setOption(pieOption3());
+
+      const pie3 = echarts.init(document.querySelector("#pie-3"));
+      pie3.setOption(pieOption2());
+
+      // const bar1 = echarts.init(document.querySelector("#bar-1"));
+      // bar1.setOption(barOption1());
+
+      const bar3 = echarts.init(document.querySelector("#bar-3"));
+      bar3.setOption(barOption1());
+
+      const bar4 = echarts.init(document.querySelector("#bar-4"));
+      bar4.setOption(barOption2());
+
+      const bar5 = echarts.init(document.querySelector("#bar-5"));
+      bar5.setOption(barOption3());
     </script>
   </body>
 </html>
