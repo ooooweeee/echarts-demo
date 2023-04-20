@@ -1,5 +1,6 @@
 function barOption3() {
   const option = {
+    tooltip: {},
     legend: {
       right: "5%",
       textStyle: {
@@ -26,6 +27,9 @@ function barOption3() {
     yAxis: [
       {
         name: "单位：单",
+        nameTextStyle: {
+          color: "#ffffff",
+        },
         axisLabel: {
           color: "#ffffff",
         },
@@ -35,6 +39,9 @@ function barOption3() {
       },
       {
         name: "单位：%",
+        nameTextStyle: {
+          color: "#ffffff",
+        },
         axisLabel: {
           color: "#ffffff",
         },
@@ -49,6 +56,9 @@ function barOption3() {
         type: "bar",
         showBackground: true,
         data: [320, 302, 301, 334, 390],
+        tooltip: {
+          show: false,
+        },
         color: {
           type: "linear",
           x: 0,
@@ -72,6 +82,9 @@ function barOption3() {
         type: "bar",
         showBackground: true,
         data: [120, 132, 101, 134, 90],
+        tooltip: {
+          show: false,
+        },
         color: {
           type: "linear",
           x: 0,
@@ -94,8 +107,21 @@ function barOption3() {
         name: "完成率",
         type: "line",
         smooth: true,
+        yAxisIndex: 1,
         color: ["#2088f2"],
         data: [120, 132, 101, 134, 90],
+        tooltip: {
+          trigger: "item",
+          backgroundColor: "#228cf9",
+          borderWidth: 0,
+          textStyle: {
+            color: "#ffffff",
+            fontSize: 18,
+          },
+          formatter(params) {
+            return `${params.data.toString()}%`;
+          },
+        },
         areaStyle: {
           color: new echarts.graphic.LinearGradient(
             0,

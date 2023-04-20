@@ -101,8 +101,11 @@
       const pie3 = echarts.init(document.querySelector("#pie-3"));
       pie3.setOption(pieOption2());
 
-      // const bar1 = echarts.init(document.querySelector("#bar-1"));
-      // bar1.setOption(barOption1());
+      const bar1 = echarts.init(document.querySelector("#bar-1"));
+      bar1.setOption(barOption3());
+
+      const bar2 = echarts.init(document.querySelector("#bar-2"));
+      bar2.setOption(barOption3());
 
       const bar3 = echarts.init(document.querySelector("#bar-3"));
       bar3.setOption(barOption1());

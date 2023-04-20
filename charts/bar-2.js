@@ -37,9 +37,7 @@ function barOption2() {
           show: false,
         },
         axisLabel: {
-          textStyle: {
-            color: "#65dbcd",
-          },
+          color: "#65dbcd",
         },
       },
     ],
