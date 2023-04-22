@@ -1,0 +1,58 @@
+.frame-header {
+  height: 72px;
+  background-image: url(../static/top-bg.png);
+  background-position-x: center;
+  background-position-y: -25px;
+  background-size: cover;
+}
+
+.frame-container {
+  display: grid;
+  color: #ffffff;
+  height: calc(100% - 72px);
+  margin-top: -8px;
+  grid-template-areas:
+    "left-above center-above right-above"
+    "left-above center-below right-above"
+    "left-below center-below right-below";
+
+  grid-template-rows: 300fr 300fr 280fr;
+  grid-template-columns: 537fr 634fr 537fr;
+
+  row-gap: 10px;
+  column-gap: 10px;
+}
+
+.frame-container .frame-panel {
+  display: grid;
+  border-radius: 6px;
+  background-color: #051f44;
+}
+.frame-container .frame-panel .panel-title {
+  background-image: url(../static/title-secure.png);
+  background-repeat: no-repeat;
+  background-size: auto 50px;
+  background-position: 15px 10px;
+}
+
+.frame-container .left-above {
+  grid-area: left-above;
+}
+.frame-container .left-below {
+  grid-area: left-below;
+}
+
+.frame-container .center-above {
+  grid-area: center-above;
+}
+
+.frame-container .center-below {
+  grid-area: center-below;
+}
+
+.frame-container .right-above {
+  grid-area: right-above;
+}
+.frame-container .right-below {
+  grid-area: right-below;
+}

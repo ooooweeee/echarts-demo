@@ -15,19 +15,21 @@ function pieOption3() {
       },
       formatter({ data }) {
         return `
-          ${data.name}
-          <div style="height: 2px; background-color: #ffffff; margin: 5px 0;"></div>
-          <div style="display: flex; width: 160px">
-            <div style="width: 100px">计划总数：</div><div style="flex: 1; text-align: right; color: #1db4de">100</div>
-          </div>
-          <div style="display: flex;">
-            <div style="width: 100px">已完成：</div><div style="flex: 1; text-align: right; color: #1db4de">40</div>
-          </div>
-          <div style="display: flex;">
-            <div style="width: 100px">未完成：</div><div style="flex: 1; text-align: right; color: #1db4de">60</div>
-          </div>
-          <div style="display: flex;">
-            <div style="width: 100px">执行率：</div><div style="flex: 1; text-align: right; color: #1db4de">40%</div>
+          <div style="font-size: 14px">
+            ${data.name}
+            <div style="height: 2px; background-color: #ffffff; margin: 5px 0;"></div>
+            <div style="display: flex; width: 160px">
+              <div style="width: 100px">计划总数：</div><div style="flex: 1; text-align: right; color: #1db4de">100</div>
+            </div>
+            <div style="display: flex;">
+              <div style="width: 100px">已完成：</div><div style="flex: 1; text-align: right; color: #1db4de">40</div>
+            </div>
+            <div style="display: flex;">
+              <div style="width: 100px">未完成：</div><div style="flex: 1; text-align: right; color: #1db4de">60</div>
+            </div>
+            <div style="display: flex;">
+              <div style="width: 100px">执行率：</div><div style="flex: 1; text-align: right; color: #1db4de">40%</div>
+            </div>
           </div>
         `;
       },

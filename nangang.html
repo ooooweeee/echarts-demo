@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #00152c;
+        user-select: none;
+      }
+      #page-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      .page-position {
+        position: absolute;
+        overflow: hidden;
+      }
+      .page-container {
+        width: 1920px;
+        height: 1080px;
+        transform-origin: left top;
+      }
+    </style>
+    <link rel="stylesheet" href="./assets/nangang.css" />
+  </head>
+  <body>
+    <div id="page-wrapper">
+      <div class="page-position">
+        <div class="page-container">
+          <div class="frame-header"></div>
+          <div class="frame-container">
+            <div class="frame-panel left-above"></div>
+            <div class="frame-panel left-below"></div>
+            <div class="frame-panel center-above"></div>
+            <div class="frame-panel center-below"></div>
+            <div class="frame-panel right-above"></div>
+            <div class="frame-panel right-below"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./lib/scale.js"></script>
+    <script src="./lib/echarts.js"></script>
+    <script src="./lib/echarts-liquidfill.js"></script>
+    <script src="./charts/pie-1.js"></script>
+    <script src="./charts/pie-2.js"></script>
+    <script src="./charts/pie-3.js"></script>
+    <script src="./charts/bar-1.js"></script>
+    <script src="./charts/bar-2.js"></script>
+    <script src="./charts/bar-3.js"></script>
+    <script>
+      useFitScreen({
+        el: document.querySelector(".page-position"),
+        container: document.querySelector(".page-container"),
+      });
+    </script>
+  </body>
+</html>

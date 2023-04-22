@@ -1,18 +1,26 @@
 function barOption3() {
+  const data1 = [320, 302, 301, 334, 390];
+  const data2 = [120, 132, 101, 134, 90];
+  const data3 = [120, 132, 101, 134, 90];
+
+  const intervalY1 = Math.ceil(Math.max(...data1) / 6) || 1;
+  const intervalY2 = Math.ceil(Math.max(...data3) / 6) || 1;
+
   const option = {
     tooltip: {},
     legend: {
-      right: "5%",
+      top: 10,
+      right: 20,
       textStyle: {
         color: "#ffffff",
         fontSize: 14,
       },
     },
     grid: {
-      top: "22%",
-      right: "10%",
-      left: "3%",
-      bottom: "3%",
+      top: 65,
+      right: 30,
+      left: 30,
+      bottom: 30,
       containLabel: true,
     },
     xAxis: {
@@ -36,6 +44,11 @@ function barOption3() {
         splitLine: {
           lineStyle: { type: "dashed", color: "#23a3c3" },
         },
+
+        min: 0,
+        max: intervalY1 * 6,
+        splitNumber: 6,
+        interval: intervalY1,
       },
       {
         name: "单位：%",
@@ -48,6 +61,11 @@ function barOption3() {
         splitLine: {
           lineStyle: { type: "dashed", color: "#23a3c3" },
         },
+
+        min: 0,
+        max: intervalY2 * 6,
+        splitNumber: 6,
+        interval: intervalY2,
       },
     ],
     series: [
@@ -55,7 +73,7 @@ function barOption3() {
         name: "计划",
         type: "bar",
         showBackground: true,
-        data: [320, 302, 301, 334, 390],
+        data: data1,
         tooltip: {
           show: false,
         },
@@ -81,7 +99,7 @@ function barOption3() {
         name: "非计划",
         type: "bar",
         showBackground: true,
-        data: [120, 132, 101, 134, 90],
+        data: data2,
         tooltip: {
           show: false,
         },
@@ -109,7 +127,7 @@ function barOption3() {
         smooth: true,
         yAxisIndex: 1,
         color: ["#2088f2"],
-        data: [120, 132, 101, 134, 90],
+        data: data3,
         tooltip: {
           trigger: "item",
           backgroundColor: "#228cf9",
@@ -141,6 +159,7 @@ function barOption3() {
             false
           ),
         },
+        symbolSize: 14,
       },
     ],
   };

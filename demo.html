@@ -8,6 +8,7 @@
     <style>
       body {
         margin: 0;
+        background-color: #00152c;
       }
       #charts-el {
         width: 100vw;
@@ -17,20 +18,62 @@
     </style>
   </head>
   <body>
-    <div style="display: flex; width: 160px">
-      <div style="width: 100px">计划总数：</div>
-      <div style="text-align: right">100</div>
-    </div>
     <div id="charts-el"></div>
     <script src="./lib/echarts.js"></script>
     <script src="./lib/echarts-liquidfill.js"></script>
-    <!-- <script src="./charts/pie-1.js"></script> -->
-    <!-- <script src="./charts/pie-2.js"></script> -->
-    <script src="./charts/mine-pie-1.js"></script>
-    <!-- <script src="./charts/pie-3.js"></script> -->
+    <!-- <script src="./demo/data.js"></script> -->
+    <script src="./demo/bar.js"></script>
     <script>
       const charts = echarts.init(document.querySelector("#charts-el"));
-      charts.setOption(option);
+      charts.setOption(
+        barOption({
+          xValue: [
+            // "1",
+            // "2",
+            // "3",
+            // "4",
+            // "5",
+            // "6",
+            // "7",
+            // "8",
+            // "9",
+            // "10",
+            // "11",
+            // "12",
+            "淮北碳鑫",
+            "唐山西山焦化",
+            "首钢京唐",
+            "南京南钢",
+          ],
+          yLabels: [
+            {
+              key: "1",
+              name: "单位：项",
+            },
+            {
+              key: "2",
+              name: "单位：%",
+            },
+          ],
+          yValues: [
+            {
+              labelName: "高危项目总数",
+              data: [410, 360, 400, 450],
+            },
+            {
+              labelName: "实施人数",
+              group: "other",
+              data: [310, 280, 300, 320],
+            },
+            {
+              labelName: "布控球",
+              group: "other",
+              labelKey: "2",
+              data: [280, 420, 400, 450],
+            },
+          ],
+        })
+      );
     </script>
   </body>
 </html>

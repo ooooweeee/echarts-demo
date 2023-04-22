@@ -12,10 +12,13 @@
   height: calc(100% - 72px);
   margin-top: -8px;
   grid-template-areas:
-    "left center-above right-above"
-    "left center-below right-below";
-  grid-template-rows: 550fr 250fr;
-  grid-template-columns: 355fr 830fr 355fr;
+    "left-above center-above right-above"
+    "left-above center-below right-above"
+    "left-below center-below right-below";
+
+  grid-template-rows: 300fr 300fr 280fr;
+  grid-template-columns: 537fr 634fr 537fr;
+
   row-gap: 10px;
   column-gap: 10px;
 }
@@ -32,49 +35,37 @@
   background-position: 15px 10px;
 }
 
-.frame-container .left {
-  grid-area: left;
-  grid-template-rows: 60px 40px 1fr 60px 40px 1fr 40px 1fr;
-  /* row-gap: 10px; */
+.frame-container .left-above {
+  grid-area: left-above;
+  grid-template-rows: 60px 40px 1fr 40px 1fr;
+  row-gap: 10px;
+}
+.frame-container .left-below {
+  grid-area: left-below;
+  grid-template-rows: 60px 1fr;
 }
 
 .frame-container .center-above {
-  background-color: transparent;
   grid-area: center-above;
+  grid-template-rows: 60px 1fr;
 }
 
 .frame-container .center-below {
   grid-area: center-below;
-  grid-template-areas:
-    "title title"
-    "rank-title analysis-title"
-    "rank-content analysis-content";
-  grid-template-rows: 60px 40px 1fr;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 10px;
-}
-.frame-container .center-below .title {
-  grid-area: title;
-}
-.frame-container .center-below .rank-title {
-  grid-area: rank-title;
-}
-.frame-container .center-below .rank-content {
-  grid-area: rank-content;
-}
-.frame-container .center-below .analysis-title {
-  grid-area: analysis-title;
-}
-.frame-container .center-below .analysis-content {
-  grid-area: analysis-content;
+  grid-template-rows: 60px 1fr 40px 1fr;
+  row-gap: 10px;
 }
 
 .frame-container .right-above {
   grid-area: right-above;
-  grid-template-rows: 60px 40px 1fr 40px 1fr;
+  grid-template-rows: 60px 1fr 40px 1fr;
   row-gap: 10px;
 }
 .frame-container .right-below {
   grid-area: right-below;
   grid-template-rows: 60px 1fr;
+}
+
+.charts-content {
+  background-color: aliceblue;
 }
