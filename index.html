@@ -102,10 +102,85 @@
       pie3.setOption(pieOption2());
 
       const bar1 = echarts.init(document.querySelector("#bar-1"));
-      bar1.setOption(barOption3());
+      bar1.setOption(
+        barOption3({
+          xValue: ["1", "2", "3", "4", "5", "6", "7", "8"],
+          yLabels: [
+            {
+              key: "1",
+              name: "单位：项",
+            },
+            {
+              key: "2",
+              name: "单位：%",
+            },
+          ],
+          yValues: [
+            {
+              labelName: "总数",
+              color: ["#219dfe", "#68dfcf"],
+              data: [410, 360, 400, 450],
+            },
+            {
+              labelName: "异常",
+              group: "other",
+              data: [310, 280, 300, 320],
+            },
+            {
+              labelName: "正常",
+              group: "other",
+              data: [280, 420, 400, 450],
+            },
+            {
+              labelName: "完成率",
+              type: "line",
+              labelKey: "2",
+              tip: true,
+              color: ["#4f90f7"],
+              data: [120, 132, 101, 134],
+            },
+          ],
+        })
+      );
 
       const bar2 = echarts.init(document.querySelector("#bar-2"));
-      bar2.setOption(barOption3());
+      bar2.setOption(
+        barOption3({
+          xValue: ["淮北碳鑫", "唐山西山焦化", "首钢京唐", "南京南钢"],
+          yLabels: [
+            {
+              key: "1",
+              name: "单位：项",
+            },
+            {
+              key: "2",
+              name: "单位：%",
+            },
+          ],
+          yValues: [
+            {
+              labelName: "高危项目总数",
+              data: [410, 360, 400, 450],
+            },
+            {
+              labelName: "实施人数",
+              data: [310, 280, 300, 320],
+            },
+            {
+              labelName: "布控球",
+              data: [280, 420, 400, 450],
+            },
+            {
+              labelName: "完成率",
+              type: "line",
+              labelKey: "2",
+              tip: true,
+              color: ["#4f90f7"],
+              data: [120, 132, 101, 134],
+            },
+          ],
+        })
+      );
 
       const bar3 = echarts.init(document.querySelector("#bar-3"));
       bar3.setOption(barOption1());
@@ -114,7 +189,39 @@
       bar4.setOption(barOption2());
 
       const bar5 = echarts.init(document.querySelector("#bar-5"));
-      bar5.setOption(barOption3());
+      bar5.setOption(
+        barOption3({
+          xValue: ["一分公司", "二分公司", "四分公司", "五分公司", "六分公司"],
+          yLabels: [
+            {
+              key: "1",
+              name: "单位：项",
+            },
+            {
+              key: "2",
+              name: "单位：%",
+            },
+          ],
+          yValues: [
+            {
+              labelName: "计划",
+              data: [410, 360, 400, 450, 280],
+            },
+            {
+              labelName: "非计划",
+              data: [310, 280, 300, 320, 370],
+            },
+            {
+              labelName: "完成率",
+              type: "line",
+              labelKey: "2",
+              tip: true,
+              color: ["#4f90f7"],
+              data: [120, 132, 101, 134, 400],
+            },
+          ],
+        })
+      );
     </script>
   </body>
 </html>

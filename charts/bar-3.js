@@ -1,145 +1,68 @@
-function barOption3() {
-  const data1 = [320, 302, 301, 334, 390];
-  const data2 = [120, 132, 101, 134, 90];
-  const data3 = [120, 132, 101, 134, 90];
+function barOption3({ xValue, yLabels = [], yValues = [] } = {}) {
+  function createyAxis(options) {
+    function formatyValue(data, num = 6) {
+      const interval = Math.ceil(Math.max(...data) / num) || 1;
+      return {
+        min: 0,
+        max: interval * num,
+        splitNumber: num,
+        interval: interval,
+      };
+    }
 
-  const intervalY1 = Math.ceil(Math.max(...data1) / 6) || 1;
-  const intervalY2 = Math.ceil(Math.max(...data3) / 6) || 1;
-
-  const option = {
-    tooltip: {},
-    legend: {
-      top: 10,
-      right: 20,
-      textStyle: {
+    const tmp = {
+      name: options.name,
+      nameTextStyle: {
         color: "#ffffff",
-        fontSize: 14,
-      },
-    },
-    grid: {
-      top: 65,
-      right: 30,
-      left: 30,
-      bottom: 30,
-      containLabel: true,
-    },
-    xAxis: {
-      axisTick: {
-        show: false,
       },
       axisLabel: {
         color: "#ffffff",
       },
-      data: ["一分公司", "二分公司", "三分公司", "四分公司", "五分公司"],
-    },
-    yAxis: [
-      {
-        name: "单位：单",
-        nameTextStyle: {
-          color: "#ffffff",
-        },
-        axisLabel: {
-          color: "#ffffff",
-        },
-        splitLine: {
-          lineStyle: { type: "dashed", color: "#23a3c3" },
-        },
+      splitLine: {
+        lineStyle: { type: "dashed", color: "#23a3c3" },
+      },
+      ...formatyValue(options.fusion.item, options.num),
+    };
 
-        min: 0,
-        max: intervalY1 * 6,
-        splitNumber: 6,
-        interval: intervalY1,
-      },
-      {
-        name: "单位：%",
-        nameTextStyle: {
-          color: "#ffffff",
-        },
-        axisLabel: {
-          color: "#ffffff",
-        },
-        splitLine: {
-          lineStyle: { type: "dashed", color: "#23a3c3" },
-        },
+    return tmp;
+  }
 
-        min: 0,
-        max: intervalY2 * 6,
-        splitNumber: 6,
-        interval: intervalY2,
-      },
-    ],
-    series: [
-      {
-        name: "计划",
+  function createSeries(type, options) {
+    function createBar(options) {
+      const [topColor, bottomColor] = options.color || [];
+      return {
         type: "bar",
-        showBackground: true,
-        data: data1,
-        tooltip: {
-          show: false,
-        },
-        color: {
-          type: "linear",
-          x: 0,
-          y: 1,
-          x2: 0,
-          y2: 0,
-          colorStops: [
-            {
-              offset: 0,
-              color: "#219dfe",
-            },
-            {
-              offset: 1,
-              color: "#68dfcf",
-            },
-          ],
-        },
-      },
-      {
-        name: "非计划",
-        type: "bar",
-        showBackground: true,
-        data: data2,
-        tooltip: {
-          show: false,
-        },
-        color: {
-          type: "linear",
-          x: 0,
-          y: 1,
-          x2: 0,
-          y2: 0,
-          colorStops: [
-            {
-              offset: 0,
-              color: "#f3d232",
-            },
-            {
-              offset: 1,
-              color: "#f2ef47",
-            },
-          ],
-        },
-      },
-      {
-        name: "完成率",
+        stack: options.group,
+        silent: true,
+        color: bottomColor
+          ? {
+              type: "linear",
+              x: 0,
+              y: 1,
+              x2: 0,
+              y2: 0,
+              colorStops: [
+                {
+                  offset: 0,
+                  color: topColor,
+                },
+                {
+                  offset: 1,
+                  color: bottomColor,
+                },
+              ],
+            }
+          : topColor,
+      };
+    }
+
+    function createLine(options) {
+      return {
         type: "line",
         smooth: true,
-        yAxisIndex: 1,
-        color: ["#2088f2"],
-        data: data3,
-        tooltip: {
-          trigger: "item",
-          backgroundColor: "#228cf9",
-          borderWidth: 0,
-          textStyle: {
-            color: "#ffffff",
-            fontSize: 18,
-          },
-          formatter(params) {
-            return `${params.data.toString()}%`;
-          },
-        },
+        symbolSize: 10,
+        color: options.color && options.color[0],
+
         areaStyle: {
           color: new echarts.graphic.LinearGradient(
             0,
@@ -159,9 +82,105 @@ function barOption3() {
             false
           ),
         },
-        symbolSize: 14,
+      };
+    }
+
+    const index = options.yLabels.findIndex((i) => i.key === options.labelKey);
+
+    return {
+      name: options.labelName,
+      yAxisIndex: index === -1 ? 0 : index,
+      data: options.data,
+      showBackground: true,
+      tooltip: {
+        show: !!options.tip,
+        trigger: "item",
+        backgroundColor: "#228cf9",
+        borderWidth: 0,
+        textStyle: {
+          color: "#ffffff",
+          fontSize: 18,
+        },
+        formatter(params) {
+          return `${params.data.toString()}%`;
+        },
       },
-    ],
+      ...(() => {
+        switch (type) {
+          case "line":
+            return createLine(options);
+          default:
+            return createBar(options);
+        }
+      })(),
+    };
+  }
+
+  function formatData(datas) {
+    return datas.reduce((result, current, index) => {
+      const {
+        group = "un-" + Date.now().toString() + index,
+        data = [],
+        labelKey,
+      } = current;
+
+      const { max = 0, item = [] } = result[group] || {};
+
+      const tmpItem = new Array(Math.max(item.length, data.length))
+        .fill(0)
+        .reduce((r, _, i) => {
+          return [...r, (item[i] || 0) + (data[i] || 0)];
+        }, []);
+
+      result[group] = {
+        max: Math.max(max, Math.max(...tmpItem)),
+        item: tmpItem,
+        labelKey,
+      };
+
+      return result;
+    }, {});
+  }
+
+  const data = formatData(yValues);
+
+  const option = {
+    tooltip: {},
+    legend: {
+      top: 10,
+      right: 20,
+      textStyle: {
+        color: "#ffffff",
+      },
+    },
+    grid: {
+      top: 65,
+      right: 15,
+      left: 15,
+      bottom: 30,
+      containLabel: true,
+    },
+    xAxis: {
+      axisLabel: {
+        color: "#ffffff",
+        fontSize: 10,
+      },
+      axisTick: {
+        show: false,
+      },
+      data: xValue,
+    },
+    yAxis: yLabels.map((item) => {
+      return createyAxis({
+        ...item,
+        fusion:
+          Object.values(data).find((i) => i.labelKey === item.key) ||
+          data[Object.keys(data).find((item) => /^un/.test(item))],
+      });
+    }),
+    series: yValues.map((item) => {
+      return createSeries(item.type, { ...item, yLabels });
+    }),
   };
   return option;
 }
