@@ -8,12 +8,14 @@
     <style>
       body {
         margin: 0;
-        background-color: #00152c;
-      }
-      #charts-el {
         width: 100vw;
         height: 100vh;
+        background-color: #00152c;
         overflow: hidden;
+      }
+      #charts-el {
+        width: 100%;
+        height: 100%;
       }
     </style>
   </head>
@@ -21,49 +23,11 @@
     <div id="charts-el"></div>
     <script src="./lib/echarts.js"></script>
     <script src="./lib/echarts-liquidfill.js"></script>
-    <!-- <script src="./demo/data.js"></script> -->
-    <script src="./demo/bar.js"></script>
+    ]
+    <script src="./charts/gauge.js"></script>
     <script>
       const charts = echarts.init(document.querySelector("#charts-el"));
-      charts.setOption(
-        barOption({
-          xValue: ["淮北碳鑫", "唐山西山焦化", "首钢京唐", "南京南钢"],
-          yLabels: [
-            {
-              key: "1",
-              name: "单位：项",
-            },
-            {
-              key: "2",
-              name: "单位：%",
-            },
-          ],
-          yValues: [
-            {
-              labelName: "高危项目总数",
-              data: [410, 360, 400, 450],
-            },
-            {
-              labelName: "实施人数",
-              group: "other",
-              data: [310, 280, 300, 320],
-            },
-            {
-              labelName: "布控球",
-              group: "other",
-              data: [280, 420, 400, 450],
-            },
-            {
-              labelName: "完成率",
-              type: "line",
-              labelKey: "2",
-              tip: true,
-              color: "#4f90f7",
-              data: [120, 132, 101, 134],
-            },
-          ],
-        })
-      );
+      charts.setOption(gaugeOption());
     </script>
   </body>
 </html>

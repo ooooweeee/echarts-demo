@@ -34,7 +34,33 @@
 }
 .frame-container .left-below {
   grid-area: left-below;
-  grid-template-rows: 60px 1fr;
+
+  display: grid;
+  grid-template-areas:
+    "gauge-title gauge-title"
+    "gauge-content gauge-legend"
+    "gauge-content gauge-tips";
+  grid-template-rows: 60px auto auto;
+  grid-template-columns: 3fr 2fr;
+}
+.frame-container .left-below .panel-title {
+  grid-area: gauge-title;
+}
+.frame-container .left-below .gauge-content {
+  grid-area: gauge-content;
+}
+.frame-container .left-below .gauge-legend {
+  grid-area: gauge-legend;
+}
+.frame-container .left-below .gauge-tips {
+  grid-area: gauge-tips;
+}
+.frame-container .left-below .gauge-legend {
+  box-sizing: border-box;
+  padding: 10px;
+}
+.frame-container .left-below .gauge-legend .legend-item {
+  margin: 10px;
 }
 
 .frame-container .center-above {
@@ -46,6 +72,62 @@
   grid-area: center-below;
   grid-template-rows: 60px 1fr 40px 1fr;
   row-gap: 10px;
+}
+.frame-container .center-below .charts-content {
+  display: grid;
+  grid-template-areas:
+    "left-gauge-legend right-gauge-legend"
+    "left-gauge-content right-gauge-content"
+    "left-gauge-title right-gauge-title";
+
+  grid-template-rows: 40px 1fr 40px;
+  grid-template-columns: 1fr 1fr;
+}
+.frame-container .center-below .charts-content .left-gauge.gauge-legend {
+  grid-area: left-gauge-legend;
+  text-align: center;
+}
+.frame-container .center-below .charts-content .left-gauge.gauge-content {
+  grid-area: left-gauge-content;
+}
+.frame-container .center-below .charts-content .left-gauge.gauge-title {
+  grid-area: left-gauge-title;
+}
+
+.frame-container .center-below .charts-content .right-gauge.gauge-legend {
+  grid-area: right-gauge-legend;
+}
+.frame-container .center-below .charts-content .right-gauge.gauge-content {
+  grid-area: right-gauge-content;
+}
+.frame-container .center-below .charts-content .right-gauge.gauge-title {
+  grid-area: right-gauge-title;
+}
+.frame-container .center-below .charts-content .gauge-legend,
+.frame-container .center-below .charts-content .gauge-title {
+  text-align: center;
+}
+.frame-container .gauge-legend .legend-item {
+  display: inline-block;
+  padding-left: 28px;
+  position: relative;
+}
+.frame-container .gauge-legend .legend-item::before {
+  display: block;
+  content: "";
+  width: 20px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+}
+.frame-container .gauge-legend .legend-1::before {
+  background-image: linear-gradient(to right, #4663ff, #0ecbff);
+}
+.frame-container .gauge-legend .legend-2::before {
+  background-image: linear-gradient(to right, #96e060, #13e3a8);
+}
+.frame-container .gauge-legend .legend-3::before {
+  background-image: linear-gradient(to right, #f8c425, #ec7545);
 }
 
 .frame-container .right-above {

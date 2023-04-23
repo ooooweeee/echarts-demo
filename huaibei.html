@@ -63,7 +63,13 @@
             </div>
             <div class="frame-panel left-below">
               <div class="panel-title"></div>
-              <div class="charts-content"></div>
+              <div id="gauge-1" class="gauge-content"></div>
+              <div class="gauge-legend">
+                <span class="legend-item legend-1">数据一</span>
+                <span class="legend-item legend-2">数据二</span>
+                <span class="legend-item legend-3">数据三</span>
+              </div>
+              <div class="gauge-tips">ss</div>
             </div>
             <div class="frame-panel center-above">
               <div class="panel-title"></div>
@@ -71,7 +77,23 @@
             </div>
             <div class="frame-panel center-below">
               <div class="panel-title"></div>
-              <div class="charts-content"></div>
+              <div class="charts-content">
+                <div class="left-gauge gauge-legend">
+                  <span class="legend-item legend-1">数据一</span>
+                  <span class="legend-item legend-2">数据二</span>
+                  <span class="legend-item legend-3">数据三</span>
+                </div>
+                <div id="gauge-2" class="left-gauge gauge-content"></div>
+                <div class="left-gauge gauge-title">统计安全检查</div>
+
+                <div class="right-gauge gauge-legend">
+                  <span class="legend-item legend-1">数据一</span>
+                  <span class="legend-item legend-2">数据二</span>
+                  <span class="legend-item legend-3">数据三</span>
+                </div>
+                <div id="gauge-3" class="right-gauge gauge-content"></div>
+                <div class="right-gauge gauge-title">安全整改</div>
+              </div>
 
               <i class="charts-title">高危作业情况</i>
               <div class="charts-content"></div>
@@ -101,6 +123,7 @@
     <script src="./charts/bar-1.js"></script>
     <script src="./charts/bar-2.js"></script>
     <script src="./charts/bar-3.js"></script>
+    <script src="./charts/gauge.js"></script>
     <script>
       useFitScreen({
         el: document.querySelector(".page-position"),
@@ -149,6 +172,9 @@
         })
       );
 
+      const gauge1 = echarts.init(document.querySelector("#gauge-1"));
+      gauge1.setOption(gaugeOption());
+
       const pie1 = echarts.init(document.querySelector("#pie-1"));
       pie1.setOption(pieOption2());
 
@@ -165,6 +191,12 @@
           },
         ])
       );
+
+      const gauge2 = echarts.init(document.querySelector("#gauge-2"));
+      gauge2.setOption(gaugeOption());
+
+      const gauge3 = echarts.init(document.querySelector("#gauge-3"));
+      gauge3.setOption(gaugeOption());
 
       const pie2 = echarts.init(document.querySelector("#pie-2"));
       pie2.setOption(pieOption3());

@@ -1,201 +1,206 @@
-function gaugeOption() {
-  var colorList = [
-    {
-      x: 0,
-      y: 1,
-      x2: 0,
-      y2: 0,
-      colorStops: [
-        {
-          offset: 0,
-          color: "#f51940", // 0% 处的颜色
-        },
-        {
-          offset: 1,
-          color: "#f51940", // 100% 处的颜色
-        },
-      ],
-    },
-    {
-      x: 0,
-      y: 1,
-      x2: 0,
-      y2: 0,
-      colorStops: [
-        {
-          offset: 0,
-          color: "#ffb555", // 0% 处的颜色
-        },
-        {
-          offset: 1,
-          color: "#ffb555", // 100% 处的颜色
-        },
-      ],
-    },
-    {
-      x: 0,
-      y: 1,
-      x2: 0,
-      y2: 0,
-      colorStops: [
-        {
-          offset: 0,
-          color: "#40da9d", // 0% 处的颜色
-        },
-        {
-          offset: 1,
-          color: "#40da9d", // 100% 处的颜色
-        },
-      ],
-    },
-    {
-      x: 0,
-      y: 1,
-      x2: 0,
-      y2: 0,
-      colorStops: [
-        {
-          offset: 0,
-          color: "#608dff", // 0% 处的颜色
-        },
-        {
-          offset: 1,
-          color: "#608dff", // 100% 处的颜色
-        },
-      ],
-    },
-  ];
-
-  const option = {
-    series: [
+function gaugeOption(data) {
+  function renderOut() {
+    return [
       {
-        type: "gauge",
-        splitNumber: 3,
-        radius: "93%",
-        center: ["50%", "70%"],
-        startAngle: 180,
-        endAngle: 0,
-        min: 0,
-        max: 100,
+        type: "bar",
+        data: [30],
+        coordinateSystem: "polar",
+        barMaxWidth: 10,
+        z: 2,
+        roundCap: true,
+        barGap: "-100%",
+        color: {
+          type: "linear",
+          x: 0,
+          y: 1,
+          x2: 0,
+          y2: 0,
+          colorStops: [
+            {
+              offset: 0,
+              color: "#f8c425",
+            },
+            {
+              offset: 1,
+              color: "#ec7545",
+            },
+          ],
+        },
+      },
+      {
+        type: "bar",
+        data: [100],
+        z: 1,
+        silent: true,
+        coordinateSystem: "polar",
+        barMaxWidth: 10,
+        roundCap: true,
+        barGap: "-100%",
+        color: "#133479",
+      },
+    ];
+  }
+  const center = ["50%", "70%"];
+  const baseSeriesOption = {
+    type: "gauge",
+    center,
+    startAngle: 180,
+    endAngle: 0,
+    clockwise: true,
+    axisLabel: {
+      show: false,
+    },
+    pointer: {
+      show: false,
+    },
+    splitLine: {
+      show: false,
+    },
+    axisTick: {
+      show: false,
+    },
+    detail: {
+      show: false,
+    },
+  };
+
+  return {
+    backgroundColor: "#051f44",
+    angleAxis: {
+      axisLine: {
+        show: false,
+      },
+      axisLabel: {
+        show: false,
+      },
+      splitLine: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
+      min: 0,
+      max: (100 * 360) / 176,
+      startAngle: 178,
+    },
+    radiusAxis: {
+      type: "category",
+      axisLine: {
+        show: false,
+      },
+      axisLabel: {
+        show: false,
+      },
+      axisTick: {
+        show: false,
+      },
+      z: 10,
+    },
+    polar: {
+      radius: "220%",
+      center,
+    },
+
+    series: [
+      ...renderOut(),
+      {
+        ...baseSeriesOption,
+        radius: "100%",
+        axisLine: {
+          lineStyle: {
+            width: 20,
+            color: [
+              [
+                80 / 100,
+                {
+                  x: 1,
+                  y: 1,
+                  x1: 0,
+                  y1: 0,
+                  colorStops: [
+                    {
+                      offset: 1,
+                      color: "#4663ff",
+                    },
+                    {
+                      offset: 0,
+                      color: "#0ecbff",
+                    },
+                  ],
+                },
+              ],
+              [1, "#133479"],
+            ],
+          },
+        },
+        axisTick: {
+          show: true,
+          splitNumber: 3,
+          distance: -20,
+          lineStyle: {
+            color: "#001b3e",
+            width: 3,
+          },
+          length: 20,
+        },
+      },
+      {
+        ...baseSeriesOption,
+
+        radius: "78%",
+        z: 99,
+        splitNumber: 5,
+        axisLine: {
+          lineStyle: {
+            width: 24,
+            color: [
+              [
+                40 / 100,
+                {
+                  x: 1,
+                  y: 1,
+                  x1: 0,
+                  y1: 0,
+                  colorStops: [
+                    {
+                      offset: 1,
+                      color: "#96e060",
+                    },
+                    {
+                      offset: 0,
+                      color: "#13e3a8",
+                    },
+                  ],
+                },
+              ],
+              [1, "#133479"],
+            ],
+          },
+        },
         pointer: {
           show: true,
-          width: 7,
+          width: 5,
           itemStyle: {
-            color: "red",
-          },
-          length: "60%",
-          borderColor: "#000",
-          borderWidth: "10",
-        },
-        axisLine: {
-          show: true,
-          lineStyle: {
-            width: 35,
-            color: [
-              [0.25, colorList[0]],
-              [0.5, colorList[1]],
-              [0.75, colorList[2]],
-              [1, colorList[3]],
-            ],
-            borderColor: "#000",
-            borderWidth: "10",
+            color: "#fe6b78",
           },
         },
         axisLabel: {
-          show: false,
-          color: "#666",
-          fontSize: 16,
-          formatter: function (value) {
-            return value.toFixed(0);
-          },
-        }, //刻度标签。
-        axisTick: {
-          show: false,
-        }, //刻度样式
-        splitLine: {
-          show: false,
-          length: "28%",
-          lineStyle: {
-            color: "#fff",
-            width: 2,
-          },
-        }, //分隔线样式
+          distance: 15,
+          color: "#ffffff",
+          fontSize: 10,
+        },
         detail: {
-          show: false,
-        },
-        title: {
-          show: false,
-        },
-        data: [
-          {
-            value: 77,
-            name: "决策层国际化导向",
+          formatter(v) {
+            return `${v}%`;
           },
-        ],
+          textStyle: {
+            color: "#ffffff",
+            fontSize: 22,
+          },
+          offsetCenter: [0, "40%"],
+        },
+        data: [40],
       },
-      // {
-      //   type: "gauge",
-      //   splitNumber: 10,
-      //   radius: "100%",
-      //   center: ["50%", "70%"],
-      //   min: 0,
-      //   max: 100,
-      //   startAngle: 180,
-      //   endAngle: 0,
-      //   pointer: {
-      //     show: false,
-      //     width: 7,
-      //     length: "60%",
-      //   },
-      //   axisLine: {
-      //     show: true,
-      //     lineStyle: {
-      //       width: 35,
-      //       color: [
-      //         [0.25, colorList[0]],
-      //         [0.5, colorList[1]],
-      //         [0.75, colorList[2]],
-      //         [1, colorList[3]],
-      //       ],
-      //       opacity: 0.15,
-      //       borderColor: "#000",
-      //       borderWidth: "10",
-      //     },
-      //   },
-      //   axisLabel: {
-      //     show: false,
-      //   }, //刻度标签。
-      //   axisTick: {
-      //     show: false,
-      //     splitNumber: 5,
-      //     lineStyle: {
-      //       color: "#fff",
-      //       width: 2,
-      //     },
-      //   }, //刻度样式
-      //   splitLine: {
-      //     show: false,
-      //     length: "28%",
-      //     lineStyle: {
-      //       color: "#fff",
-      //       width: 2,
-      //     },
-      //   }, //分隔线样式
-      //   detail: {
-      //     show: false,
-      //   },
-      //   title: {
-      //     show: false,
-      //   },
-      //   data: [
-      //     {
-      //       value: 77,
-      //       name: "决策层国际化导向",
-      //     },
-      //   ],
-      // },
     ],
   };
-
-  return option;
 }
