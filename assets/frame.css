@@ -1,79 +1,130 @@
 .frame-header {
-  height: 72px;
-  background-image: url(../static/top-bg.png);
-  background-position-x: center;
-  background-position-y: -25px;
-  background-size: cover;
-}
-
-.frame-container {
   display: grid;
+  grid-template-columns: 1fr 760px 1fr;
   color: #ffffff;
-  height: calc(100% - 72px);
-  margin-top: -8px;
-  grid-template-areas:
-    "left-above center-above right-above"
-    "left-below center-below right-below";
-  grid-template-rows: 550fr 250fr;
-  grid-template-columns: 355fr 830fr 355fr;
-  row-gap: 10px;
-  column-gap: 10px;
 }
-.frame-container .charts-panel {
-  display: grid;
-  border-radius: 6px;
-  background-color: #051f44;
+
+.frame-header .logo {
+  display: flex;
+  height: 38px;
+  align-items: center;
 }
-.frame-container .charts-panel .panel-title {
-  background-image: url(../static/title-secure.png);
+.frame-header .logo .content {
+  width: 200px;
+  height: 38px;
+  background-image: url(../static/company-logo.png);
   background-repeat: no-repeat;
-  background-size: auto 50px;
-  background-position: 15px 10px;
+  background-size: contain;
+  background-position-x: 18px;
 }
-.frame-container .charts-panel .panel-charts {
+.frame-header .logo .date-time {
+  color: #00cdff;
+}
+
+.frame-header .title {
   display: grid;
-  grid-template-rows: 30px 1fr;
+  grid-template-columns: 1fr 420px 1fr;
 }
 
-.frame-container .left-above {
-  grid-area: left-above;
-  grid-template-rows: 60px 1fr 1fr;
-  row-gap: 10px;
+.frame-header .title .other-nav {
+  position: relative;
+  position: relative;
+  text-align: center;
+  line-height: 30px;
+  top: 3px;
 }
-.frame-container .left-below {
-  grid-area: left-below;
-  grid-template-rows: 60px 1fr;
+.frame-header .title .other-nav::after {
+  position: absolute;
+  background-image: url(../static/nav-border.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 28px;
+  top: 0;
 }
-
-.frame-container .center-above {
-  background-color: transparent;
-  grid-area: center-above;
-}
-.frame-container .center-below {
-  grid-area: center-below;
-  grid-template-areas:
-    "title title"
-    "rank analysis";
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 10px;
-}
-.frame-container .center-below .title {
-  grid-area: title;
-}
-.frame-container .center-below .rank {
-  grid-area: rank;
-}
-.frame-container .center-below .analysis {
-  grid-area: analysis;
+.frame-header .title .other-nav::before {
+  position: absolute;
+  background-image: url(../static/nav-bg.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 28px;
+  z-index: -1;
 }
 
-.frame-container .right-above {
-  grid-area: right-above;
-  grid-template-rows: 60px 1fr 1fr;
-  row-gap: 10px;
+.frame-header .title .other-nav.left {
+  right: -15px;
 }
-.frame-container .right-below {
-  grid-area: right-below;
-  grid-template-rows: 60px 1fr;
+.frame-header .title .other-nav.right {
+  left: -15px;
+}
+.frame-header .title .other-nav.right::after {
+  transform: scaleX(-1);
+}
+.frame-header .title .other-nav.right::before {
+  transform: scaleX(-1);
+}
+
+.frame-header .title .now-page {
+  position: relative;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 50px;
+  text-align: center;
+  letter-spacing: 5px;
+  text-shadow: 0px 0px 20px #000000;
+}
+
+.frame-header .title .now-page::before {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 0;
+  left: 70px;
+  top: 25px;
+  z-index: -1;
+  box-shadow: 0px 0px 20px 6px #0095ff;
+}
+
+.frame-header .tools {
+  display: flex;
+  line-height: 38px;
+  flex-direction: row-reverse;
+}
+
+.frame-header .tools .tools-item {
+  width: 58px;
+  text-align: center;
+}
+
+.frame-header .tools .tools-item.active {
+  position: relative;
+}
+.frame-header .tools .tools-item.active::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 9px;
+  width: 100%;
+  height: 20px;
+  z-index: -1;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    #2285b3,
+    transparent
+  );
+}
+
+.frame-container .frame-panel .charts-title {
+  font-size: 18px;
+  line-height: 38px;
+  box-sizing: border-box;
+  padding-left: 22px;
+  font-weight: 600;
 }
