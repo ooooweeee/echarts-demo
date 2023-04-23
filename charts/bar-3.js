@@ -1,6 +1,6 @@
 function barOption3({ xValue, yLabels = [], yValues = [] } = {}) {
   function createyAxis(options) {
-    function formatyValue(data, num = 6) {
+    function formatyValue(data, num = 5) {
       const interval = Math.ceil(Math.max(...data) / num) || 1;
       return {
         min: 0,

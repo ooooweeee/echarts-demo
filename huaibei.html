@@ -28,21 +28,38 @@
         transform-origin: left top;
       }
     </style>
+    <link rel="stylesheet" href="./assets/frame.css" />
     <link rel="stylesheet" href="./assets/huabei.css" />
   </head>
   <body>
     <div id="page-wrapper">
       <div class="page-position">
         <div class="page-container">
-          <div class="frame-header">淮北作业部</div>
+          <div class="frame-header">
+            <div class="logo">
+              <div class="content"></div>
+              <i class="date-time">2023-04-01 12:00</i>
+            </div>
+            <div class="title">
+              <div class="other-nav left">公司驾驶舱</div>
+              <div class="now-page">淮北作业部</div>
+              <div class="other-nav right">作业部驾驶舱</div>
+            </div>
+            <div class="tools">
+              <i class="tools-item day">日</i>
+              <i class="tools-item week">周</i>
+              <i class="tools-item month active">月</i>
+              <i class="tools-item year">年</i>
+            </div>
+          </div>
           <div class="frame-container">
             <div class="frame-panel left-above">
               <div class="panel-title"></div>
               <i class="charts-title">点检管理</i>
-              <div class="charts-content"></div>
+              <div id="bar-1" class="charts-content"></div>
 
               <i class="charts-title">点检异常</i>
-              <div class="charts-content"></div>
+              <div id="pie-1" class="charts-content"></div>
             </div>
             <div class="frame-panel left-below">
               <div class="panel-title"></div>
@@ -61,14 +78,15 @@
             </div>
             <div class="frame-panel right-above">
               <div class="panel-title"></div>
-              <div class="charts-content"></div>
+              <i class="charts-title">检修计划</i>
+              <div id="pie-2" class="charts-content"></div>
 
-              <i class="charts-title">高危作业项目监管</i>
-              <div class="charts-content"></div>
+              <i class="charts-title">检修工单</i>
+              <div id="bar-2" class="charts-content"></div>
             </div>
             <div class="frame-panel right-below">
               <div class="panel-title"></div>
-              <div class="charts-content"></div>
+              <div id="bar-3" class="charts-content"></div>
             </div>
           </div>
         </div>
@@ -88,6 +106,120 @@
         el: document.querySelector(".page-position"),
         container: document.querySelector(".page-container"),
       });
+
+      const bar1 = echarts.init(document.querySelector("#bar-1"));
+      bar1.setOption(
+        barOption3({
+          xValue: ["1", "2", "3", "4", "5", "6", "7", "8"],
+          yLabels: [
+            {
+              key: "1",
+              name: "单位：项",
+            },
+            {
+              key: "2",
+              name: "单位：%",
+            },
+          ],
+          yValues: [
+            {
+              labelName: "总数",
+              color: ["#219dfe", "#68dfcf"],
+              data: [410, 360, 400, 450],
+            },
+            {
+              labelName: "异常",
+              group: "other",
+              data: [310, 280, 300, 320],
+            },
+            {
+              labelName: "正常",
+              group: "other",
+              data: [280, 420, 400, 450],
+            },
+            {
+              labelName: "完成率",
+              type: "line",
+              labelKey: "2",
+              tip: true,
+              color: ["#4f90f7"],
+              data: [120, 132, 101, 134],
+            },
+          ],
+        })
+      );
+
+      const pie1 = echarts.init(document.querySelector("#pie-1"));
+      pie1.setOption(pieOption2());
+
+      const pie2 = echarts.init(document.querySelector("#pie-2"));
+      pie2.setOption(pieOption3());
+
+      const bar2 = echarts.init(document.querySelector("#bar-2"));
+      bar2.setOption(
+        barOption3({
+          xValue: ["计划", "非计划"],
+          yLabels: [
+            {
+              key: "1",
+              name: "单位：单",
+            },
+            {
+              key: "2",
+              name: "单位：%",
+            },
+          ],
+          yValues: [
+            {
+              labelName: "计划",
+              data: [410, 360],
+            },
+            {
+              labelName: "非计划",
+              data: [310, 280],
+            },
+            {
+              labelName: "完成率",
+              type: "line",
+              labelKey: "2",
+              tip: true,
+              color: ["#4f90f7"],
+              data: [120, 132],
+            },
+          ],
+        })
+      );
+
+      const bar3 = echarts.init(document.querySelector("#bar-3"));
+      bar3.setOption(
+        barOption3({
+          xValue: ["碳锌作业区", "焦化作业区"],
+          yLabels: [
+            {
+              key: "1",
+              name: "单位：项",
+            },
+            {
+              key: "2",
+              name: "单位：%",
+            },
+          ],
+          yValues: [
+            {
+              labelName: "用工人数",
+              data: [410, 360],
+            },
+            {
+              labelName: "用工工时",
+              data: [310, 280],
+            },
+            {
+              labelName: "重要机具",
+              data: [310, 280],
+            },
+          ],
+        })
+      );
     </script>
   </body>
 </html>

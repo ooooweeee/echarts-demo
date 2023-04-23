@@ -1,11 +1,3 @@
-.frame-header {
-  height: 72px;
-  background-image: url(../static/top-bg.png);
-  background-position-x: center;
-  background-position-y: -25px;
-  background-size: cover;
-}
-
 .frame-container {
   display: grid;
   color: #ffffff;
@@ -58,14 +50,10 @@
 
 .frame-container .right-above {
   grid-area: right-above;
-  grid-template-rows: 60px 1fr 40px 1fr;
+  grid-template-rows: 60px 40px 1fr 40px 1fr;
   row-gap: 10px;
 }
 .frame-container .right-below {
   grid-area: right-below;
   grid-template-rows: 60px 1fr;
-}
-
-.charts-content {
-  background-color: aliceblue;
 }

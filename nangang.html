@@ -28,20 +28,66 @@
         transform-origin: left top;
       }
     </style>
+    <link rel="stylesheet" href="./assets/frame.css" />
     <link rel="stylesheet" href="./assets/nangang.css" />
   </head>
   <body>
     <div id="page-wrapper">
       <div class="page-position">
         <div class="page-container">
-          <div class="frame-header"></div>
+          <div class="frame-header">
+            <div class="logo">
+              <div class="content"></div>
+              <i class="date-time">2023-04-01 12:00</i>
+            </div>
+            <div class="title">
+              <div class="other-nav left">公司驾驶舱</div>
+              <div class="now-page">南京南钢作业部</div>
+              <div class="other-nav right">作业部驾驶舱</div>
+            </div>
+            <div class="tools">
+              <i class="tools-item day">日</i>
+              <i class="tools-item week">周</i>
+              <i class="tools-item month active">月</i>
+              <i class="tools-item year">年</i>
+            </div>
+          </div>
           <div class="frame-container">
-            <div class="frame-panel left-above"></div>
-            <div class="frame-panel left-below"></div>
-            <div class="frame-panel center-above"></div>
-            <div class="frame-panel center-below"></div>
-            <div class="frame-panel right-above"></div>
-            <div class="frame-panel right-below"></div>
+            <div class="frame-panel left-above">
+              <div class="panel-title"></div>
+              <i class="charts-title">检修计划</i>
+              <div id="pie-1" class="charts-content"></div>
+
+              <i class="charts-title check-2">检修工单</i>
+              <div id="bar-1" class="charts-content"></div>
+            </div>
+            <div class="frame-panel left-below">
+              <div class="panel-title"></div>
+              <div class="charts-content"></div>
+            </div>
+            <div class="frame-panel center-above">
+              <div class="panel-title"></div>
+              <div id="bar-2" class="charts-content"></div>
+            </div>
+            <div class="frame-panel center-below">
+              <div class="panel-title"></div>
+              <div class="charts-content"></div>
+
+              <i class="charts-title check-2">检修工单</i>
+              <div class="charts-content"></div>
+            </div>
+            <div class="frame-panel right-above">
+              <div class="panel-title"></div>
+              <div id="pie-2" class="charts-content"></div>
+
+              <i class="charts-title check-2">检修工单</i>
+              <div class="charts-content"></div>
+            </div>
+            <div class="frame-panel right-below">
+              <div class="panel-title"></div>
+              <i class="charts-title check-2">检修计划</i>
+              <div id="pie-3" class="charts-content"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -60,6 +106,53 @@
         el: document.querySelector(".page-position"),
         container: document.querySelector(".page-container"),
       });
+
+      const pie1 = echarts.init(document.querySelector("#pie-1"));
+      pie1.setOption(pieOption3());
+
+      const bar1 = echarts.init(document.querySelector("#bar-1"));
+      bar1.setOption(
+        barOption3({
+          xValue: ["淮北碳鑫", "唐山西山焦化", "首钢京唐", "南京南钢"],
+          yLabels: [
+            {
+              key: "1",
+              name: "单位：项",
+            },
+            {
+              key: "2",
+              name: "单位：%",
+            },
+          ],
+          yValues: [
+            {
+              labelName: "计划",
+              data: [410, 360, 400, 450],
+            },
+            {
+              labelName: "非计划",
+              data: [310, 280, 300, 320],
+            },
+            {
+              labelName: "完成率",
+              type: "line",
+              labelKey: "2",
+              tip: true,
+              color: ["#4f90f7"],
+              data: [120, 132, 101, 134],
+            },
+          ],
+        })
+      );
+
+      const bar2 = echarts.init(document.querySelector("#bar-2"));
+      bar2.setOption(barOption1());
+
+      const pie2 = echarts.init(document.querySelector("#pie-2"));
+      pie2.setOption(pieOption2());
+
+      const pie3 = echarts.init(document.querySelector("#pie-3"));
+      pie3.setOption(pieOption3());
     </script>
   </body>
 </html>

@@ -3,7 +3,7 @@ function pieOption2() {
     backgroundColor: "#051f44",
     title: {
       text: "总数",
-      x: "30%",
+      x: "31%",
       y: "46%",
       textStyle: {
         color: "#ffffff",
