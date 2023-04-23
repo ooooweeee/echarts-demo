@@ -73,15 +73,15 @@
               <div class="panel-title"></div>
               <div class="charts-content"></div>
 
-              <i class="charts-title check-2">检修工单</i>
+              <i class="charts-title check-2">高危作业情况</i>
               <div class="charts-content"></div>
             </div>
             <div class="frame-panel right-above">
               <div class="panel-title"></div>
               <div id="pie-2" class="charts-content"></div>
 
-              <i class="charts-title check-2">检修工单</i>
-              <div class="charts-content"></div>
+              <i class="charts-title check-2">统计标准</i>
+              <div id="bar-3" class="charts-content"></div>
             </div>
             <div class="frame-panel right-below">
               <div class="panel-title"></div>
@@ -146,10 +146,56 @@
       );
 
       const bar2 = echarts.init(document.querySelector("#bar-2"));
-      bar2.setOption(barOption1());
+      bar2.setOption(
+        barOption1([
+          {
+            label: "中板",
+            value: 79,
+          },
+          {
+            label: "炼焦",
+            value: 80,
+          },
+          {
+            label: "中厚板卷",
+            value: 82,
+          },
+          {
+            label: "宽厚板",
+            value: 98,
+          },
+        ])
+      );
 
       const pie2 = echarts.init(document.querySelector("#pie-2"));
       pie2.setOption(pieOption2());
+
+      const bar3 = echarts.init(document.querySelector("#bar-3"));
+      bar3.setOption(
+        barOption3({
+          xValue: ["一分公司", "二分公司", "四分公司", "五分公司", "六分公司"],
+          yLabels: [
+            {
+              key: "1",
+              name: "单位：项",
+            },
+            {
+              key: "2",
+              name: "单位：%",
+            },
+          ],
+          yValues: [
+            {
+              labelName: "区分点巡检标准",
+              data: [410, 360, 400, 450, 280],
+            },
+            {
+              labelName: "项目作业标准",
+              data: [310, 280, 300, 320, 370],
+            },
+          ],
+        })
+      );
 
       const pie3 = echarts.init(document.querySelector("#pie-3"));
       pie3.setOption(pieOption3());

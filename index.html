@@ -200,7 +200,30 @@
       );
 
       const bar3 = echarts.init(document.querySelector("#bar-3"));
-      bar3.setOption(barOption1());
+      bar3.setOption(
+        barOption1([
+          {
+            label: "一分公司",
+            value: 79,
+          },
+          {
+            label: "二分公司",
+            value: 80,
+          },
+          {
+            label: "三分公司",
+            value: 82,
+          },
+          {
+            label: "四分公司",
+            value: 98,
+          },
+          {
+            label: "五分公司",
+            value: 98,
+          },
+        ])
+      );
 
       const bar4 = echarts.init(document.querySelector("#bar-4"));
       bar4.setOption(barOption2());

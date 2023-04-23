@@ -1,8 +1,8 @@
-function barOption1() {
+function barOption1(data) {
   const option = {
     grid: {
       top: "12%",
-      right: "10%",
+      right: "3%",
       left: "3%",
       bottom: "3%",
       containLabel: true,
@@ -23,7 +23,7 @@ function barOption1() {
         axisLabel: {
           color: "#ffffff",
         },
-        data: ["五分公司", "四分公司", "三分公司", "二分公司", "一分公司"],
+        data: data.map((item) => item.label),
       },
       {
         axisTick: {
@@ -32,7 +32,7 @@ function barOption1() {
         axisLabel: {
           color: "#65dbcd",
         },
-        data: [79, 80, 82, 98, 98],
+        data: data.map((item) => item.value),
       },
     ],
     series: [
@@ -40,7 +40,7 @@ function barOption1() {
         type: "bar",
         barWidth: "80%",
         showBackground: true,
-        data: [79, 80, 82, 98, 98],
+        data: data.map((item) => item.value),
         color: {
           type: "linear",
           x: 0,

@@ -67,7 +67,7 @@
             </div>
             <div class="frame-panel center-above">
               <div class="panel-title"></div>
-              <div class="charts-content"></div>
+              <div id="bar-4" class="charts-content"></div>
             </div>
             <div class="frame-panel center-below">
               <div class="panel-title"></div>
@@ -151,6 +151,20 @@
 
       const pie1 = echarts.init(document.querySelector("#pie-1"));
       pie1.setOption(pieOption2());
+
+      const bar4 = echarts.init(document.querySelector("#bar-4"));
+      bar4.setOption(
+        barOption1([
+          {
+            label: "碳鑫",
+            value: 98,
+          },
+          {
+            label: "焦化",
+            value: 82,
+          },
+        ])
+      );
 
       const pie2 = echarts.init(document.querySelector("#pie-2"));
       pie2.setOption(pieOption3());
