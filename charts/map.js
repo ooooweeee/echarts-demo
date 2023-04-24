@@ -3,7 +3,7 @@ function mapOption() {
     geo: [
       {
         map: "simp-china",
-        aspectScale: 1.2,
+        aspectScale: 1,
         layoutCenter: ["50%", "50%"],
         layoutSize: "120%",
         emphasis: {
@@ -14,10 +14,10 @@ function mapOption() {
         itemStyle: {
           borderColor: "#ffffff",
           borderWidth: 1,
-          areaColor: "#1ebfff",
-          shadowColor: "rgba(29, 122, 248, 1)",
+          areaColor: "#0660f0",
+          shadowColor: "#1b78f8",
           shadowOffsetY: 10,
-          opacity: 0.5,
+          opacity: 0.9,
         },
       },
     ],

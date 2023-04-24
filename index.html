@@ -65,7 +65,9 @@
               <i class="charts-title">高危作业项目监管</i>
               <div id="bar-2" class="charts-content"></div>
             </div>
-            <div class="frame-panel center-above"></div>
+            <div class="frame-panel center-above">
+              <div id="map-1" class="charts-content"></div>
+            </div>
             <div class="frame-panel center-below">
               <div class="panel-title title"></div>
               <i class="charts-title rank-title">综合排名</i>
@@ -93,12 +95,14 @@
     <script src="./lib/scale.js"></script>
     <script src="./lib/echarts.js"></script>
     <script src="./lib/echarts-liquidfill.js"></script>
+    <script src="./static/china_map.land.js"></script>
     <script src="./charts/pie-1.js"></script>
     <script src="./charts/pie-2.js"></script>
     <script src="./charts/pie-3.js"></script>
     <script src="./charts/bar-1.js"></script>
     <script src="./charts/bar-2.js"></script>
     <script src="./charts/bar-3.js"></script>
+    <script src="./charts/map.js"></script>
     <script>
       const defaultOption = {
         backgroundColor: "#051f44",
@@ -107,6 +111,10 @@
       useFitScreen({
         el: document.querySelector(".page-position"),
         container: document.querySelector(".page-container"),
+      });
+
+      echarts.registerMap("simp-china", {
+        geoJSON: chinaMapLandJSON,
       });
 
       const pie1 = echarts.init(document.querySelector("#pie-1"));
@@ -262,6 +270,9 @@
           ],
         })
       );
+
+      const map1 = echarts.init(document.querySelector("#map-1"));
+      map1.setOption(mapOption());
     </script>
   </body>
 </html>
