@@ -10,7 +10,6 @@
         margin: 0;
         width: 100vw;
         height: 100vh;
-        background-color: #00152c;
         overflow: hidden;
       }
       #charts-el {
@@ -23,11 +22,19 @@
     <div id="charts-el"></div>
     <script src="./lib/echarts.js"></script>
     <script src="./lib/echarts-liquidfill.js"></script>
-    ]
-    <script src="./charts/gauge.js"></script>
+    <script src="./static/china_map.land.js"></script>
+    <script src="./static/dandong_map.js"></script>
+    <script src="./demo/map.js"></script>
     <script>
+      echarts.registerMap("simp-china", {
+        geoJSON: chinaMapLandJSON,
+      });
+      echarts.registerMap("dandong", {
+        geoJSON: dandongMapJSON,
+      });
+
       const charts = echarts.init(document.querySelector("#charts-el"));
-      charts.setOption(gaugeOption());
+      charts.setOption(mapOption());
     </script>
   </body>
 </html>
